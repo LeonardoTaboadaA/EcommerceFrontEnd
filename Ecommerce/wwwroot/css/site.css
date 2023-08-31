@@ -1,0 +1,182 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+
+
+#btnCrearCuenta {
+    width: 100%;
+    font-weight: bold;
+    background-color: #5AB507;
+    color: white;
+}
+
+#btnCrearCuenta:hover {
+   background-color: #4EAA03;
+}
+
+#btnACarrito {
+    width: 100%;
+    font-weight: bold;
+    background-color: #188719;
+    color: white;
+}
+
+#btnACarrito:hover {
+    background-color: #55b849;
+}
+
+#btnIrAComprar {
+    
+    font-weight: bold;
+    background-color: #188719;
+    color: white;
+}
+
+#btnIrAComprar:hover {
+    background-color: #55b849;
+}
+
+.btnEliminarPDCC {
+    font-weight: bold;
+    background-color: #188719;
+    color: white;
+}
+
+    .btnEliminarPDCC:hover {
+        background-color: #55b849;
+        color: white;
+    }
+
+#btnContinuar {
+    width: 100%;
+    font-weight: bold;
+    background-color: #188719;
+    color: white;
+}
+
+    #btnContinuar:hover {
+        background-color: #55b849;
+    }
+
+
+#btnMicrosoft {
+    background: #fff;
+    color: rgba(0,0,0,0.54);
+    box-shadow: rgba(0,0,0,0.2) 1px 1px 5px 0;
+    border-color: transparent;
+    text-align: center;
+    border-radius: 3px;
+    width: 100%;
+    padding-top: 0;
+    margin-bottom: 12px;
+    display: block;
+    -webkit-transition: background-color .2s ease-in-out 0s,border-color .2s ease-in-out 0s;
+    transition: background-color .2s ease-in-out 0s,border-color .2s ease-in-out 0s;
+}
+
+    #btnMicrosoft:hover {
+        background-color: #f9fafc;
+    }
+
+#iconMicrosoft {
+    background: url(https://d2k1ftgv7pobq7.cloudfront.net/meta/c/p/res/images/72ece804e5285ab6507e2406157cda3c/microsoft-logo.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    vertical-align: -5px;
+    display: inline-block;
+    border-radius: 1px;
+    width: 18px;
+    height: 18px;
+}
+
+
+#lblMicrosoft {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: inherit;
+    font-weight: bold;
+    color: #505f79;
+}
+
+#divLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#divPCompleta {
+    
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#cardLogin {
+    box-shadow: rgba(0,0,0,0.2) 1px 1px 5px 0;
+    border-color: transparent;
+}
+
+#cardRegistro {
+    box-shadow: rgba(0,0,0,0.2) 1px 1px 5px 0;
+    border-color: transparent;
+}
+
+#btnRegistrate {
+    width: 100%;
+    font-weight: bold;
+    background-color: #5AB507;
+    color: white;
+}
+
+#btnRegistrate:hover {
+    background-color: #4EAA03;
+}
+
+.btn-circle {
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+}
+
+    .btn-circle:focus {
+        box-shadow: none; /* Quita la sombra de enfoque */
+        outline: none;
+    }
+
+#inpCantidadProductos {
+    width: 1.5em;
+    text-align: center;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+#divDsctoPorcentaje {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    padding-right:10px;
+    background: #eb0029;
+    border-radius: 10px;
+    color: white;
+}
+

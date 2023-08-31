@@ -1,0 +1,153 @@
+﻿@using Ecommerce.ViewModels
+@model ProductoCarritoViewModel
+
+@{
+    ViewData["Title"] = "DetalleProducto";
+}
+@if (ViewBag.ShowSnackbar == "NHS")
+{
+    <div class="alert alert-success" role="alert">
+        No hay suficiente stock disponible.
+    </div>
+    
+}
+@if (ViewBag.ShowSnackbar == "AC")
+{
+    <div class="alert alert-success" role="alert">
+        Agregado correctamente
+    </div>
+
+}
+
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-12 d-flex justify-content-center align-items-center" style="padding-bottom:1rem;">
+            <div class="container" style="padding: 0;">
+                <div class="card" style="border: none;">
+                    <img src="@Html.DisplayFor(model => model.Imagen)" class="card-img" alt="img proyecto">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-12 d-flex justify-content-center align-items-center" style="padding-bottom:1rem;">
+
+            <div class="container" style="padding: 0;">
+                <div class="card" style="border: none;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-weight: bold;">@Html.DisplayFor(model => model.Descripcion)</h5>
+                        <p class="card-text" style="font-size: 20px; ">@Html.DisplayFor(model => model.Nombre)</p>
+
+                        <div class="row">
+                            <div class="col-auto d-flex justify-content-center align-items-center">
+                                <div class="container" style="padding-left: 0; padding-right: 0; padding-bottom: 18px;">
+                                    <p class="card-text" style="font-weight: bold; font-size: 30px;">S/. @Html.DisplayFor(model => model.Precio)</p>
+                                </div>
+                                
+                            </div>
+                            @if (Model.DsctoPorcentaje != null)
+                            {
+                                <div class="col-auto d-flex justify-content-center align-items-center">
+                                    <div class="container" style="padding-left: 0; padding-right: 0; padding-bottom: 18px;">
+                                        <div class="container-fluid" id="divDsctoPorcentaje">
+                                            <span class="card-text">-@Html.DisplayFor(model => model.DsctoPorcentaje)%</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+                            
+
+                        </div>
+
+
+                        <div class="row justify-content-start">
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-primary btn-circle d-flex align-items-center justify-content-center" id="btnDisminuir">-</button>
+                            </div>
+                            <div class="col-auto" style="padding: 0px;">
+                                <span type="text" id="spCantidadProductos" style="user-select: none;">1</span>
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-primary btn-circle d-flex align-items-center justify-content-center" id="btnAumentar">+</button>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+
+                                <form asp-action="AñadirAlCarrito">
+                                    <input type="hidden" asp-for="IdProducto" />
+                                    <input type="hidden" asp-for="Nombre" />
+                                    <input type="hidden" asp-for="Descripcion" />
+                                    <input type="hidden" asp-for="Imagen" />
+                                    <input type="hidden" asp-for="PrecioLista" />
+                                    <input type="hidden" asp-for="Precio" />
+                                    <input type="hidden" asp-for="DsctoPorcentaje" />
+                                    <input type="hidden" asp-for="Descuento" />
+                                    <input type="hidden" id="inpStock" asp-for="Stock" />
+                                    <input type="hidden" asp-for="UserId" />
+                                    <input type="hidden" id="inpCantidad" asp-for="Cantidad" />
+                                    <input type="hidden" asp-for="SubTotal" />
+                                    <input type="hidden" asp-for="Activo" />
+                                    <br>
+                                    <div class="form-group">
+                                        <input type="submit" value="Agregar al carrito" class="btn" id="btnACarrito" />
+                                    </div>
+
+                                </form>
+                               
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+}
+
+<script>
+    const inpCantidad = document.getElementById('inpCantidad');
+    const inpStock = document.getElementById('inpStock');
+    const spCantidadProductos = document.getElementById('spCantidadProductos');
+    const btnDisminuir = document.getElementById('btnDisminuir');
+    const btnAumentar = document.getElementById('btnAumentar');
+
+
+
+
+    btnDisminuir.addEventListener('click', () => {
+        var stock = inpStock.value;
+        validarContadorDisminuir(spCantidadProductos, stock);
+
+    });
+
+    btnAumentar.addEventListener('click', () => {
+        var stock = inpStock.value;
+        validarContadorAumentar(spCantidadProductos, stock);
+
+
+
+    });
+
+    function validarContadorDisminuir(spCantidadProductos, stock) {
+        if (parseInt(spCantidadProductos.textContent) > 1 && parseInt(spCantidadProductos.textContent) <= stock) {
+            spCantidadProductos.textContent = parseInt(spCantidadProductos.textContent) - 1;
+            inpCantidad.value = parseInt(spCantidadProductos.textContent);
+        }
+    };
+
+    function validarContadorAumentar(spCantidadProductos, stock) {
+        if (parseInt(spCantidadProductos.textContent) > 0 && parseInt(spCantidadProductos.textContent) < stock) {
+            spCantidadProductos.textContent = parseInt(spCantidadProductos.textContent) + 1;
+            inpCantidad.value = parseInt(spCantidadProductos.textContent);
+        }
+    };
+</script>

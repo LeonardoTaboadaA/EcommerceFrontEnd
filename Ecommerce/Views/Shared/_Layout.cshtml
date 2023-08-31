@@ -1,0 +1,65 @@
+﻿@using Ecommerce.Servicios;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Ecommerce</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Ecommerce.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body style="background-color: #eee; display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="padding-left: 10.5px;padding-right: 10.5px;">
+            <div class="container" style="padding:0;">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ecommerce</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.IsInRole(Constantes.RolAdmin))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Listado">Usuarios</a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Carrito" asp-action="Index"><i class="bi bi-cart3" style="color: black;"></i></a>
+                        </li>
+                    </ul>
+                    <partial name="_LinksLogin" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container" style="flex: 1;">
+        <main role="main">
+            @RenderBody()
+        </main>
+        
+    </div>
+    <footer style="background-color: white; ">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container text-center">
+                        <p style="margin-top: 30px;margin-bottom: 30px;">Hecho con <img src="https://d13xymm0hzzbsd.cloudfront.net/1/20200908/15996022549905.svg"  alt="img proyecto"> por Ecommerce</p>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿@using Ecommerce.ViewModels
+@model RegistroViewModel
+
+@{
+    ViewData["Title"] = "Registro";
+}
+
+
+
+<div class="container">
+    <div class="text-center">
+        <h1 style="color: #0d6efd; font-weight: bold;">Registrate</h1>
+        <br />
+    </div>
+    <div class="card h-100" id="cardRegistro">
+        <div class="card-body">
+            <form asp-action="Registro">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+
+                    <input asp-for="Email" class="form-control" placeholder="Correo" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+
+                    <input asp-for="Password" class="form-control" placeholder="Contraseña" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="text-center mb-3">
+                    <button class="btn" id="btnRegistrate">Registrarte</button>
+                </div>
+
+                <div class="text-center mb-3">
+                    <a class="btn btn-primary" style="width:100%; font-weight: bold;" asp-action="login">Iniciar Sesión</a>
+                </div>
+
+                <div class="text-center mb-3" style="margin-bottom: 0 !important;">
+                    <a class="btn btn" style="width:100%; margin-bottom: 0;" id="btnMicrosoft" asp-action="LoginExterno" asp-route-proveedor="Microsoft">
+                        <span id="iconMicrosoft" class="icon"></span>
+                        <span id="lblMicrosoft" class="text-center">Continuar con Microsoft</span>
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

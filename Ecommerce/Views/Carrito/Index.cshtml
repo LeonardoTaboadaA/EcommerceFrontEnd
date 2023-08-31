@@ -1,0 +1,181 @@
+﻿@using Ecommerce.ViewModels
+@model IEnumerable<CarritoUsuario>
+@{
+    ViewData["Title"] = "Carrito";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <h4 style="margin-bottom: 16px;">Carrito</h4>
+    </div>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
+            <div class="container" style="width: 100%; height: 100%;padding:0;">
+                <div class="row">
+
+                    @foreach (var ps in Model)
+                    {
+                        <div class="col-12">
+
+                            <div class="card mb-3" style="border:none;">
+
+                                <div class="row g-0">
+                                    <div class="col-md-4 d-flex justify-content-center align-items-center">
+                                        <div class="container d-flex justify-content-center align-items-center" style="height: 100%">
+                                            <img src="@ps.Imagen" class="img-fluid rounded-start" alt="img proyecto" style="padding: 10px;">
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-md-8 d-flex justify-content-center align-items-center">
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="margin-bottom: 4px;">@ps.Descripcion</h5>
+                                            <p class="card-text" style="margin-bottom: 4px;">@ps.Nombre</p>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="card-text" style="margin-bottom: 4px; font-weight: bold;">S/. @ps.Precio</p>
+                                                        @if (@ps.PrecioLista != null)
+                                                        {
+                                                            <p class="card-text" style="margin-bottom: 4px;"><s>S/. @ps.PrecioLista</s></p>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="card-text" style="margin-bottom: 4px;">@ps.Cantidad producto(s)</p>
+                                                        <a data-bs-toggle="modal" data-bs-target="#modalEliminarCarrito_@ps.IdCarrito" class="btn" style="padding-top: 0;"><i class="bi bi-trash3"></i></a>
+                                                        <div class="modal fade" id="modalEliminarCarrito_@ps.IdCarrito" tabindex="-1" role="dialog" aria-labelledby="modalEliminarCarritoLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-12 d-flex justify-content-center align-items-center">
+                                                                                <div class="container text-center">
+                                                                                    <h4 class="text-center">¿Estás seguro de eliminar este producto del carrito?</h4>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row">
+                                                                            <div class="col-12 d-flex justify-content-center align-items-center">
+                                                                                <div class="container text-center">
+                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="font-weight: bold;">Cancelar</button>
+                                                                                    <a asp-action="EliminarProductoDelCarrito" asp-route-id="@ps.IdCarrito" class="btn btnEliminarPDCC">Aceptar</a>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+
+                                            <input type="hidden" class="subtotal" value="@ps.SubTotal" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
+            <div class="container" style="width: 100%; height: 100%;padding:0;">
+                <div class="card mb-3" style="width: 100%; border:none;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div>
+                                    <h3 style="margin-bottom: 20px; font-family: Barlow Bold,sans-serif;color: #464646; font-weight: bold;">Resumen</h3>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <p style="margin-bottom: 0;">Subtotal</p>
+                                    <span id="spUltSubTotal"></span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <p style="font-weight: bold;">Total</p>
+                                    <span id="spTotal" style="font-weight: bold;"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="btn" id="btnContinuar">Continuar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="container text-center my-5">
+                <img src="https://d13xymm0hzzbsd.cloudfront.net/1/20220113/16421174039642.svg" class="img-fluid rounded-start" alt="img proyecto" style="padding: 10px;">
+                <h4>Tu carrito está vacío</h4>
+                <p>Parece que todavía no has agregado productos a tu carrito</p>
+                <a asp-controller="Home" asp-action="Index" class="btn" id="btnIrAComprar">Ir a comprar</a>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+<script>
+    //Uso querySelectorAll para que me seleccione todos los input con la class="subtotal"
+    const inpSubTotales = document.querySelectorAll('.subtotal');
+    const spUltSubTotal = document.getElementById('spUltSubTotal');
+    const spTotal = document.getElementById('spTotal');
+
+    let totalSubtotal = 0;
+    inpSubTotales.forEach(subtotalElement => {
+        const subtotal = parseFloat(subtotalElement.value);
+        totalSubtotal += subtotal;
+    });
+
+    spUltSubTotal.textContent = `S/. ${totalSubtotal.toFixed(2)}`;
+    spTotal.textContent = spUltSubTotal.textContent;
+
+
+    document.querySelectorAll('[data-toggle="modal"]').forEach(button => {
+        button.addEventListener('click', function () {
+            const targetModalId = button.getAttribute('data-target');
+            $(targetModalId).modal('show');
+        });
+    });
+
+
+</script>

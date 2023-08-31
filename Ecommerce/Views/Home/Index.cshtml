@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<Producto>
+@if (Model != null)
+{
+
+    <div class="row">
+        @foreach (var p in Model)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12" style="padding-bottom:1rem;">
+                <a asp-controller="Producto" asp-action="DetalleProducto" asp-route-id="@p.IdProducto" style="text-decoration: none; color: inherit;">
+                    <div class="card h-100" style="border: none;">
+                        <img src="@p.Imagen" class="card-img-top" alt="img proyecto">
+                        <div class="card-body d-flex flex-column">
+                            <div>
+                                @if (p.DsctoPorcentaje != null)
+                                {
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <div class="container-fluid" id="divDsctoPorcentaje">
+                                                <span class="card-text">-@p.DsctoPorcentaje%</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="mt-auto">
+                                <p class="card-text" style="font-weight: bold; margin-bottom: 4px;">@p.Descripcion</p>
+                                <p class="card-text" style="margin-bottom: 4px;">@p.Nombre</p>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex justify-content-between">
+                                            <p class="card-text" style="font-weight: bold; margin-bottom: 4px;">S/. @p.Precio</p>
+                                            @if (@p.PrecioLista != null)
+                                            {
+                                                <p class="card-text"><s>S/. @p.PrecioLista</s></p>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                           </div>
+                            
+                            
+                        </div>
+                    </div>
+                </a>
+
+
+            </div>
+
+        }
+    </div>
+
+
+
+
+
+
+}
